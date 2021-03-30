@@ -56,6 +56,7 @@ const login_post = async (req, res) => {
       token,
       user: {
         id: user.id,
+        name: user.name,
         email: user.email,
         diskSpace: user.diskSpace,
         usedSpace: user.usedSpace,

@@ -4,17 +4,23 @@ import Header from './components/header'
 import Login from './components/login'
 import Registration from './components/registration'
 import { AppGlobalStyles } from './app.styles'
+import { useSelector } from 'react-redux'
 
-const App = () => (
-  <div>
-    <AppGlobalStyles />
-    <Header />
-    <Switch>
-      <Route exact path="/" render={()=> <h1>Максидинахуй</h1>}/>
-      <Route path="/login" component={Login} />
-      <Route path="/registration" component={Registration} />
-    </Switch>
-  </div>
-)
+const App = () => {
+  const isAuth = useSelector((state) => state.user.isAuth)
+  return (
+    <>
+      <AppGlobalStyles />
+      <Header isAuth={isAuth} />
+      <Route exact path="/" render={() => <h1>Максидинахуй</h1>} />
+      {!isAuth && (
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/registration" component={Registration} />
+        </Switch>
+      )}
+    </>
+  )
+}
 
 export default App

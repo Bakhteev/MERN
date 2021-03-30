@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {useDispatch} from 'react-redux'
 import {
   HeaderWrapper,
   HeaderButton,
@@ -7,8 +8,14 @@ import {
   LogoText,
   Logo,
 } from './style'
-
-const Header = () => {
+import {userLogOut} from '../actions/user.action'
+const Header = ({ isAuth }) => {
+  const dispatch = useDispatch()
+  const logout = () =>{
+    if(window.confirm("вы уверены что хотите выйти?")){
+      dispatch(userLogOut())
+    }
+  }
   return (
     <HeaderWrapper>
       <HeaderContainer>
@@ -25,12 +32,20 @@ const Header = () => {
           <LogoText>MERN CLOUD</LogoText>
         </Logo>
         <div>
-          <HeaderButton>
-            <Link to="/login">Войти</Link>
-          </HeaderButton>
-          <HeaderButton>
-            <Link to="/registration">Регистрация</Link>
-          </HeaderButton>
+          {!isAuth ? (
+            <>
+              <HeaderButton>
+                <Link to="/login">Войти</Link>
+              </HeaderButton>
+              <HeaderButton>
+                <Link to="/registration">Регистрация</Link>
+              </HeaderButton>
+            </>
+          ) : (
+            <HeaderButton>
+              <Link to="/logout">выход</Link>
+            </HeaderButton>
+          )}
         </div>
       </HeaderContainer>
     </HeaderWrapper>

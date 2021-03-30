@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import AuthBtn from '../authBtn'
 import Input from '../input'
 import { LoginForm, LoginTitle, LoginBody } from './style'
 import { login } from '../actions/user.action'
 
 const Login = () => {
+  const dispatch = useDispatch()
   const [loginBody, setLoginBody] = useState({
     email: '',
     password: '',
   })
   const handleSubmit = (e) => {
     e.preventDefault()
-    login(loginBody)
+    // dispatch(loginBody)
+    dispatch(login(loginBody))
     setLoginBody({
       email: '',
       password: '',
@@ -24,6 +27,7 @@ const Login = () => {
         <Input
           text="Введите адрес электронной почты..."
           name="email"
+          type="text"
           value={loginBody.email}
           setValue={setLoginBody}
         />
