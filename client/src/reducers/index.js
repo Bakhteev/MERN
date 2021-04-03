@@ -1,8 +1,8 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import userReducer from './userReducer';
-import fileReducer from './fileReducer';
+import userReducer from './user.reducer';
+import fileReducer from './file.reducer';
 
 const rootReducer = combineReducers({
   user: userReducer,

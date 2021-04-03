@@ -3,6 +3,8 @@ const { validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
 const config = require('config')
 const User = require('../models/User')
+const fileService = require('../services/file.service');
+const File = require('../models/File');
 
 const registration_post = async (req, res) => {
   try {
@@ -24,7 +26,9 @@ const registration_post = async (req, res) => {
     password = await bcrypt.hash(password, salt)
 
     const newUser = new User({ name, email, password })
+    console.log(newUser)
     newUser.save()
+    await fileService.createDir(new File({ user: newUser._id, name: '' }));
     return res.json({ message: 'User was created' })
   } catch (err) {
     console.log(err)
@@ -69,4 +73,29 @@ const login_post = async (req, res) => {
   }
 }
 
-module.exports = { registration_post, login_post }
+const auth_get = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.user.id })
+
+    const token = jwt.sign({ id: user.id }, config.get('secretKey'), {
+      expiresIn: '1h',
+    })
+
+    return res.json({
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        diskSpace: user.diskSpace,
+        usedSpace: user.usedSpace,
+        avatar: user.avatar,
+      },
+    })
+  } catch (err) {
+    console.log(e)
+    res.send({ message: 'Server error', e })
+  }
+}
+
+module.exports = { registration_post, login_post, auth_get }

@@ -8,7 +8,7 @@ import {
   LogoText,
   Logo,
 } from './style'
-import {userLogOut} from '../actions/user.action'
+import {userLogOut} from '../../actions/user.action'
 const Header = ({ isAuth }) => {
   const dispatch = useDispatch()
   const logout = () =>{

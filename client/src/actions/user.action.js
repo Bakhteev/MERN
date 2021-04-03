@@ -37,10 +37,26 @@ export const login = (body) => {
       )
       dispatch(userLogin(responce.data.user))
       localStorage.setItem('token', responce.data.token)
-      alert(responce.data.message)
-      console.log(responce.data)
+      // alert(responce.data.message)
+      // console.log(responce.data)
     } catch (error) {
       alert(error)
     }
   }
 }
+
+export const auth = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/auth/auth', {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      })
+      dispatch(userLogin(response.data.user))
+      console.log(response.data)
+    } catch (error) {
+      localStorage.removeItem('token')
+      alert(error, 'здесь')
+    }
+  }
+}
+

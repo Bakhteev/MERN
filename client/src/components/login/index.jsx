@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import AuthBtn from '../authBtn'
 import Input from '../input'
 import { LoginForm, LoginTitle, LoginBody } from './style'
-import { login } from '../actions/user.action'
+import { login } from '../../actions/user.action'
 
 const Login = () => {
   const dispatch = useDispatch()

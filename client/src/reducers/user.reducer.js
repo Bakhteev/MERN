@@ -1,4 +1,4 @@
-import { USER_LOGOUT, USER_LOGIN } from '../components/actions/user.action'
+import { USER_LOGOUT, USER_LOGIN } from '../actions/user.action'
 
 const initialState = {
   currentUser: {},

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AuthBtn from '../authBtn'
 import Input from '../input'
 import { RegistrationForm, RegistrationTitle, RegistrationBody } from './style'
-import { registration } from '../actions/user.action'
+import { registration } from '../../actions/user.action'
 
 const Registration = () => {
   const [registerBody, setRegisterBody] = useState({
