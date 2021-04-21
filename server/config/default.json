@@ -1,5 +1,7 @@
 {
-  "PORT": 8080,
-  "DB_URL": "mongodb+srv://bogdan:323694m@cluster0.2ou6j.mongodb.net/MERN?retryWrites=true&w=majority",
-  "secretKey": "pochemuNeOromo"
+  "serverPort": 5000,
+  "dbUrl": "mongodb+srv://bogdan:323694m@cluster0.2ou6j.mongodb.net/MERN?retryWrites=true&w=majority",
+  "secretKey": "mern-secket-key",
+  "filePath": "D:\\projects\\MERN\\server\\files",
+  "staticPath": "D:\\projects\\MERN\\server\\static"
 }
